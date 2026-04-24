@@ -9,5 +9,5 @@ globalThis["cmsg"]["assets"]["en"] = Object.assign(
     70386: { js: ["dd5a1ceeed6a4a43.strings.js"], css: [] },
     72719: { js: ["462fee36a21a4739.strings.js"], css: [] },
     97633: { js: ["8a76ab81a528f8ef.strings.js"], css: [] },
-  },
+  }
 );
