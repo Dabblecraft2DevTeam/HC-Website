@@ -106,12 +106,27 @@
           }
           response.text().then((footerStr) => {
             container.innerHTML = "";
-            const div = document.createElement("div");
-            div.innerHTML = footerStr;
-            for (const child of [...div.children]) {
-              if (child.tagName.toLowerCase() !== "script") {
-                container.append(child);
+            const parser = new DOMParser();
+            const footerDoc = parser.parseFromString(footerStr, "text/html");
+            const elements = footerDoc.body.querySelectorAll("*");
+            for (const el of elements) {
+              if (el.tagName.toLowerCase() === "script") {
+                el.remove();
+                continue;
               }
+              for (const attr of [...el.attributes]) {
+                const name = attr.name.toLowerCase();
+                if (
+                  name.startsWith("on") ||
+                  (attr.value &&
+                    attr.value.toLowerCase().trim().startsWith("javascript:"))
+                ) {
+                  el.removeAttribute(attr.name);
+                }
+              }
+            }
+            for (const child of [...footerDoc.body.children]) {
+              container.append(child);
             }
 
             (() => {
