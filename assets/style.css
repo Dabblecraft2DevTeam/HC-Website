@@ -247,3 +247,9 @@ footer {
         margin: 0 auto;
     }
 }
+
+/* Accessibility Focus Styles */
+a:focus-visible, button:focus-visible, .btn:focus-visible, .social-card:focus-visible, .menu-toggle:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
