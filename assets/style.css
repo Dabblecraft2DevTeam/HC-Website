@@ -1,0 +1,249 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #2b2b2b;
+    color: #edf0f2;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #1a1a1a;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #fff;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.description {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #ccc;
+}
+
+.cta-box {
+    background: #3d3d3d;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #fff;
+    max-width: 400px;
+}
+
+.server-info {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.server-address {
+    font-size: 1.5rem;
+    font-family: monospace;
+    color: #fff;
+}
+
+.hero-media {
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero-media video {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Content Sections */
+.content-section, .socials-section, .wiki-section {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.content-section h1, .socials-section h1, .wiki-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.join-steps {
+    text-align: left;
+    display: inline-block;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.server-info-box {
+    margin: 2rem 0;
+    font-size: 1.5rem;
+    font-family: monospace;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: #fff;
+    color: #2b2b2b;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: transform 0.2s, background 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background: #eee;
+}
+
+.discord-cta {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: #3d3d3d;
+    border-radius: 12px;
+}
+
+.perks-list {
+    text-align: left;
+    display: inline-block;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.social-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.social-card {
+    background: #3d3d3d;
+    padding: 2rem;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: background 0.3s, transform 0.2s;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.social-card:hover {
+    background: #4d4d4d;
+    transform: translateY(-5px);
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #1a1a1a;
+        padding: 1rem 0;
+        box-shadow: 0 4px 5px rgba(0,0,0,0.5);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        text-align: center;
+        padding: 1rem 0;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content {
+        display: flex;
+        _flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .cta-box {
+        margin: 0 auto;
+    }
+}
