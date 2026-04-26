@@ -55,6 +55,12 @@ nav {
     color: #fff;
     font-size: 1.5rem;
     cursor: pointer;
+    transition: transform 0.3s ease;
+    z-index: 1001;
+}
+
+.menu-toggle.open {
+    transform: rotate(90deg);
 }
 
 /* Hero Section */
@@ -253,3 +259,4 @@ a:focus-visible, button:focus-visible {
     outline: 2px solid #fff;
     outline-offset: 2px;
 }
+
