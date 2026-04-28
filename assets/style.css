@@ -149,6 +149,13 @@ nav {
     max-width: 600px;
 }
 
+.hero-image {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin-bottom: 2rem;
+}
+
 .hero-media video {
     width: 100%;
     border-radius: 12px;
