@@ -1,3 +1,8 @@
+// Security: Frame-busting script to prevent clickjacking
+if (window.top !== window.self) {
+    window.top.location = window.self.location;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
