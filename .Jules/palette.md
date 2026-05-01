@@ -5,3 +5,6 @@
 ## 2024-04-27 - Accessible Click-to-Copy for Static Text
 **Learning:** Making static text elements (like an IP address or code snippet) interactive for click-to-copy functionality requires adding `role="button"` and `tabindex="0"`, along with both `click` and `keydown` event listeners (for Space/Enter) to ensure they are accessible to keyboard and screen reader users. Visual feedback (e.g. temporary text change to "Copied!" and `cursor: pointer`) is essential.
 **Action:** When converting static text to interactive copying elements, always apply ARIA button roles, `tabindex`, keyboard event listeners, and clear visual feedback states.
+## 2024-11-20 - Adding Skip-to-Content Link
+**Learning:** Added a "Skip to main content" link that is visually hidden and appears on focus. This pattern enables keyboard users to bypass repetitive navigation elements.
+**Action:** Always ensure hidden elements like skip links are made visible on `:focus` to ensure they are actionable and noticeable for keyboard-only users.
