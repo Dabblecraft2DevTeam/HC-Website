@@ -1,3 +1,7 @@
+if (window.self !== window.top) {
+    window.top.location = window.self.location;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
