@@ -23,4 +23,9 @@
 **Vulnerability:** The site was entirely vulnerable to clickjacking because `frame-ancestors` is not supported within `<meta>` tags and there is no server configuring Content-Security-Policy or X-Frame-Options HTTP headers.
 **Learning:** It is impossible to use `frame-ancestors` in CSP implemented with an HTML `<meta>` tag. Therefore, if a static site is deployed without server-side HTTP headers, it will be vulnerable to clickjacking unless client-side mitigations are implemented.
 **Prevention:** Always implement a JavaScript frame-busting script (`if (window.self !== window.top) { window.top.location = window.self.location; }`) in static websites that are unable to configure HTTP response headers.
+
+## 2026-05-03 - HTML5 Sandbox Bypass of Traditional Frame-Busting
+**Vulnerability:** The implemented traditional frame-busting script (`if (window.self !== window.top) { window.top.location = window.self.location; }`) can be trivially bypassed by an attacker embedding the site within an iframe using the `sandbox` attribute (e.g., `sandbox="allow-scripts"` without `allow-top-navigation`). The browser prevents the sandboxed iframe from modifying the top-level location, causing the frame-busting script to fail and allowing the site to be clickjacked.
+**Learning:** Client-side clickjacking defense must be designed with an assumed failure mode. A script that attempts to change state (redirect) can be blocked, whereas a script that grants access (unhiding the body) is fail-safe.
+**Prevention:** When HTTP response headers (`X-Frame-Options` or `Content-Security-Policy: frame-ancestors`) are unavailable, use a "hide-first" defense-in-depth approach. Apply a CSS class (e.g., `.anti-clickjack { display: none !important; }`) to the `<body>` by default, and use JavaScript to remove the class only if `window.self === window.top`.
 >>>>>>> main
