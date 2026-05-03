@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         address.setAttribute('tabindex', '0');
         address.setAttribute('aria-label', 'Copy server IP address');
         address.setAttribute('title', 'Click to copy IP');
+        address.setAttribute('aria-live', 'polite');
 
         const originalText = address.textContent;
         let timeoutId;
@@ -32,11 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 await navigator.clipboard.writeText(originalText);
                 address.textContent = 'Copied!';
+                address.setAttribute('aria-label', 'Server IP address copied!');
                 if (timeoutId) {
                     clearTimeout(timeoutId);
                 }
                 timeoutId = setTimeout(() => {
                     address.textContent = originalText;
+                    address.setAttribute('aria-label', 'Copy server IP address');
                 }, 2000);
             } catch (err) {
                 console.error('Failed to copy text: ', err);

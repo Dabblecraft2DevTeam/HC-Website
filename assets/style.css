@@ -316,7 +316,7 @@ footer {
 }
 
 /* Accessibility Focus Styles */
-a:focus-visible, button:focus-visible {
+a:focus-visible, button:focus-visible, [role="button"]:focus-visible {
     outline: 2px solid #fff;
     outline-offset: 2px;
 }

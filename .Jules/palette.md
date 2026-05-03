@@ -9,3 +9,7 @@
 ## 2026-05-02 - Sticky Headers and Skip Links
 **Learning:** When implementing "skip to content" links on a site with a sticky or fixed header, the targeted element (usually `<main>`) needs CSS `scroll-margin-top` to prevent the content from being hidden underneath the header when the skip link is activated and the browser scrolls to the target.
 **Action:** Always verify the interaction between skip-to-content anchor targets and sticky headers, adding `scroll-margin-top` as needed.
+
+## 2024-11-20 - Dynamic Text Updates in Custom Controls
+**Learning:** When a custom interactive element updates its text content to provide feedback (e.g., changing "hc.nbz.boats" to "Copied!"), a static `aria-label` will override the text content, preventing screen readers from announcing the change even if `aria-live="polite"` is set.
+**Action:** Always dynamically update the `aria-label` alongside the visual text content when providing interaction feedback, or avoid static `aria-labels` when the text content itself is already descriptive. Ensure `[role="button"]` elements receive the same focus-visible styles as native buttons.
