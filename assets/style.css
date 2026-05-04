@@ -343,3 +343,4 @@ a:focus-visible, button:focus-visible, [role="button"]:focus-visible {
 main {
     scroll-margin-top: 5rem; /* Account for sticky header */
 }
+.anti-clickjack { display: none !important; }

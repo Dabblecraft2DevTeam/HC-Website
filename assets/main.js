@@ -1,4 +1,6 @@
-if (window.self !== window.top) {
+if (window.self === window.top) {
+    document.body.classList.remove('anti-clickjack');
+} else {
     window.top.location = window.self.location;
 }
 
