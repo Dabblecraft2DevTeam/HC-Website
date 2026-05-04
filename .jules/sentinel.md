@@ -24,3 +24,8 @@
 **Learning:** It is impossible to use `frame-ancestors` in CSP implemented with an HTML `<meta>` tag. Therefore, if a static site is deployed without server-side HTTP headers, it will be vulnerable to clickjacking unless client-side mitigations are implemented.
 **Prevention:** Always implement a JavaScript frame-busting script (`if (window.self !== window.top) { window.top.location = window.self.location; }`) in static websites that are unable to configure HTTP response headers.
 >>>>>>> main
+
+## 2026-05-04 - Hide-First Anti-Clickjacking
+**Vulnerability:** The existing frame-busting script (`window.top.location = window.self.location`) was vulnerable because an attacker can embed the page in an iframe with the `sandbox="allow-scripts"` attribute, which prevents the frame from navigating the top-level window. This completely bypasses the traditional JavaScript-based frame-busting defense.
+**Learning:** Traditional JS frame-busting can be trivially bypassed using HTML5 sandbox attributes. A "hide-first" approach is more robust: use a strict CSS class (`.anti-clickjack { display: none !important; }`) to hide the page content by default, and only remove it via JavaScript if `window.self === window.top`. Since the CSP `style-src 'self'` prevents attackers from overriding this with inline styles, the page remains securely hidden when embedded.
+**Prevention:** Always use the hide-first pattern combined with a strict `style-src` CSP to implement client-side anti-clickjacking defenses instead of relying purely on frame navigation.
