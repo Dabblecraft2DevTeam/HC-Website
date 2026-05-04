@@ -143,13 +143,25 @@ nav {
     font-family: monospace;
     color: #fff;
     cursor: pointer;
-    transition: color 0.2s, text-decoration 0.2s;
+    transition: all 0.2s ease;
     display: inline-block;
+    min-width: 180px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
 }
 
 .server-address:hover, .server-address:focus-visible {
     color: #a3d9ff;
-    text-decoration: underline;
+    background: rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+.server-address:active {
+    transform: translateY(0);
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .hero-media {
