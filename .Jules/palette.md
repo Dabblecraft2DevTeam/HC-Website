@@ -17,3 +17,6 @@
 ## 2024-05-24 - Interactive Text Affordances & Layout Stability
 **Learning:** Programmatically adding `role="button"` to inline text for features like click-to-copy is insufficient for UX if visual button affordances are missing. Furthermore, dynamically changing the text (e.g., from an IP address to "Copied!") causes jarring layout shifts if the inline element lacks a fixed minimum width.
 **Action:** When implementing click-to-copy or similar inline dynamic text interactions, always add visual button affordances (background, padding, border-radius, hover/active states) and a fixed `min-width` with centered text to ensure layout stability during state changes.
+## 2026-05-06 - Mobile Menu State Management
+**Learning:** For manually implemented mobile menus without a framework, ensuring keyboard (`Escape` key) and pointer (outside click) events correctly sync multiple DOM states (`.active`, `.open`, `aria-expanded`, `aria-label`) requires careful event propagation handling (`e.stopPropagation()`) on the toggle button to avoid immediate re-closure by the document listener.
+**Action:** When adding outside click listeners to custom dropdowns or menus, always verify the toggle button's click event doesn't conflict with the document's click listener.
