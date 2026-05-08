@@ -17,3 +17,7 @@
 ## 2024-05-24 - Interactive Text Affordances & Layout Stability
 **Learning:** Programmatically adding `role="button"` to inline text for features like click-to-copy is insufficient for UX if visual button affordances are missing. Furthermore, dynamically changing the text (e.g., from an IP address to "Copied!") causes jarring layout shifts if the inline element lacks a fixed minimum width.
 **Action:** When implementing click-to-copy or similar inline dynamic text interactions, always add visual button affordances (background, padding, border-radius, hover/active states) and a fixed `min-width` with centered text to ensure layout stability during state changes.
+
+## 2026-05-08 - Accessible Custom Menus Dismissal Patterns
+**Learning:** Custom mobile toggle menus can present significant accessibility and usability issues if users cannot dismiss them naturally. Relying only on the toggle button itself violates expectations. Specifically, keyboard users expect the `Escape` key to close a modal or menu and return focus to the trigger element. Mouse/touch users intuitively click outside the menu to dismiss it.
+**Action:** When implementing custom toggle menus, always include listeners for the `Escape` key (`keydown`) and document-level clicks (`click`), taking care to use `e.stopPropagation()` on the toggle button itself to prevent immediate closure due to event bubbling. Ensure the focus explicitly returns to the menu toggle when closed via `Escape` to maintain keyboard focus flow.
