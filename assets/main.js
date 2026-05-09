@@ -1,7 +1,12 @@
-if (window.self === window.top) {
-    document.body.classList.remove('anti-clickjack');
-} else {
-    window.top.location = window.self.location;
+try {
+    if (window.self === window.top) {
+        document.body.classList.remove('anti-clickjack');
+    } else {
+        window.top.location = window.self.location;
+    }
+} catch (e) {
+    // SECURITY: Prevent exception details leaking when embedded in a restrictive sandbox iframe
+    console.error('Frame protection error occurred.');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -66,7 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     address.setAttribute('aria-label', 'Copy server IP address');
                 }, 2000);
             } catch (err) {
-                console.error('Failed to copy text: ', err);
+                // SECURITY: Do not leak raw exception details to the console
+                console.error('Failed to copy text.');
             }
         };
 
