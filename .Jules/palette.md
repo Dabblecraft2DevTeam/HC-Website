@@ -20,3 +20,7 @@
 ## 2025-05-09 - Safely Dismissing Mobile Menus via Outside Clicks
 **Learning:** Using `e.stopPropagation()` on toggle buttons to prevent document click handlers from firing is risky and can block legitimate global events. Furthermore, checking outside clicks must account for the toggle trigger itself to avoid reopening behavior immediately after closing.
 **Action:** When implementing outside click dismissal, attach a document-level click listener and conditionally close only if `!trigger.contains(e.target) && !menu.contains(e.target)`, ensuring both the trigger button and the menu itself are excluded from the "outside" area.
+
+## 2026-05-10 - Success Color States for Click-to-Copy
+**Learning:** While changing the text of an element (like an IP address to "Copied!") provides feedback, pairing it with a distinct visual state (e.g., green success color background) significantly enhances the UX by immediately signaling success in a universally understood way.
+**Action:** When implementing click-to-copy or similar short-lived interactive feedback, toggle a specific CSS class (e.g., `.copied`) to provide explicit, color-coded visual success feedback alongside any dynamic text changes.
