@@ -20,3 +20,6 @@
 ## 2025-05-09 - Safely Dismissing Mobile Menus via Outside Clicks
 **Learning:** Using `e.stopPropagation()` on toggle buttons to prevent document click handlers from firing is risky and can block legitimate global events. Furthermore, checking outside clicks must account for the toggle trigger itself to avoid reopening behavior immediately after closing.
 **Action:** When implementing outside click dismissal, attach a document-level click listener and conditionally close only if `!trigger.contains(e.target) && !menu.contains(e.target)`, ensuring both the trigger button and the menu itself are excluded from the "outside" area.
+## 2024-05-25 - Explicit Visual Feedback for Dynamic Text States
+**Learning:** For short-lived interactive feedback like click-to-copy, dynamically changing text (e.g., to "Copied!") isn't always enough to explicitly signal a successful action to the user. Pairing the text change with a distinct visual state change via a specific CSS class (e.g., toggling `.copied` for color-coded success feedback like green text/borders) vastly improves the clarity of the interaction.
+**Action:** When implementing short-lived dynamic text changes for user feedback, pair them with explicit visual state changes by toggling a CSS class.

@@ -164,6 +164,12 @@ nav {
     background: rgba(255, 255, 255, 0.15);
 }
 
+.server-address.copied {
+    background: rgba(40, 167, 69, 0.2);
+    color: #4CAF50;
+    border-color: #4CAF50;
+}
+
 .hero-media {
     flex: 1;
     max-width: 600px;
