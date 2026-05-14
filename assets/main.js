@@ -57,12 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 await navigator.clipboard.writeText(originalText);
                 address.textContent = 'Copied!';
+                address.classList.add('copied');
                 address.setAttribute('aria-label', 'Server IP address copied!');
                 if (timeoutId) {
                     clearTimeout(timeoutId);
                 }
                 timeoutId = setTimeout(() => {
                     address.textContent = originalText;
+                    address.classList.remove('copied');
                     address.setAttribute('aria-label', 'Copy server IP address');
                 }, 2000);
             } catch (err) {
