@@ -1,7 +1,12 @@
 if (window.self === window.top) {
     document.body.classList.remove('anti-clickjack');
 } else {
-    window.top.location = window.self.location;
+    try {
+        window.top.location = window.self.location;
+    } catch (e) {
+        // Prevent DOMException stack trace leaks in restrictive sandboxes
+        console.error('Frame busting failed.');
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
