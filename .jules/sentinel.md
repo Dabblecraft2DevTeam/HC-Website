@@ -27,3 +27,8 @@
 **Vulnerability:** The existing frame-busting script (`window.top.location = window.self.location`) was vulnerable because an attacker can embed the page in an iframe with the `sandbox="allow-scripts"` attribute, which prevents the frame from navigating the top-level window. This completely bypasses the traditional JavaScript-based frame-busting defense.
 **Learning:** Traditional JS frame-busting can be trivially bypassed using HTML5 sandbox attributes. A "hide-first" approach is more robust: use a strict CSS class (`.anti-clickjack { display: none !important; }`) to hide the page content by default, and only remove it via JavaScript if `window.self === window.top`. Since the CSP `style-src 'self'` prevents attackers from overriding this with inline styles, the page remains securely hidden when embedded.
 **Prevention:** Always use the hide-first pattern combined with a strict `style-src` CSP to implement client-side anti-clickjacking defenses instead of relying purely on frame navigation.
+
+## 2026-05-18 - Unhandled Exception in Frame-Busting
+**Vulnerability:** The hide-first frame-busting logic attempts to reassign `window.top.location`, which can throw an unhandled `DOMException` if the page is embedded in a highly restrictive iframe sandbox (e.g., lacking `allow-top-navigation`). This exception leaks stack traces and internal execution context to the console.
+**Learning:** Security defenses that interact with cross-origin or sandboxed APIs must anticipate privilege restrictions. Failing to handle these restrictions gracefully can introduce secondary information disclosure risks.
+**Prevention:** Always wrap frame-busting or cross-origin boundary interactions in a `try...catch` block to fail securely without leaking internal context.
