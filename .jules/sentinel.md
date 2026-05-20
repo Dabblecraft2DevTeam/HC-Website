@@ -32,3 +32,13 @@
 **Vulnerability:** When a page utilizes traditional JavaScript frame-busting logic (`window.top.location = window.self.location`) and is embedded in a highly restrictive iframe (e.g., one without the `allow-top-navigation` sandbox attribute), attempting to read or write to `window.top.location` results in a cross-origin `DOMException` or security error. If unhandled, this exception can leak stack traces and internal execution contexts to the browser console or monitoring tools, potentially exposing sensitive implementation details.
 **Learning:** Security mechanisms like frame-busting can themselves become vectors for information leakage if their failure states are not accounted for. Code executing in untrusted or potentially hostile embedding contexts must assume that browser security policies (like CORS or sandboxing) might forcefully block its execution, causing it to throw errors.
 **Prevention:** When implementing or modifying frame-busting logic, always wrap it in a `try...catch` block to safely swallow or generically handle `DOMException`s, preventing stack trace leakage in restrictive sandboxes.
+
+## 2026-10-18 - Client-Side Error Suppression Security Theater
+**Vulnerability:** An attempt was made to suppress raw error objects in `console.error` (e.g., from a failed clipboard `DOMException`) to prevent "stack trace leakage".
+**Learning:** Client-side browser errors do not contain sensitive backend internals or server data. Suppressing them provides absolutely zero security benefit and actively worsens frontend observability and debugging capabilities. This constitutes "security theater."
+**Prevention:** Never suppress client-side error objects under the guise of security unless the error message explicitly contains embedded secrets (e.g., tokens inadvertently included in the error string).
+
+## 2026-10-18 - Restricting Iframe and Worker Sources in Meta CSP
+**Vulnerability:** A static site utilizing `<meta>` tags for its CSP allowed `frame-src`, `child-src`, and `worker-src` to fall back to `default-src 'self'`. This allowed the page to potentially embed same-origin iframes or spawn web workers, increasing the attack surface if an injection vulnerability were discovered.
+**Learning:** Even if `frame-ancestors` (which protects *against* being embedded) is unsupported in `<meta>` tags, restricting what the page itself can embed is still highly effective. Setting unused resource directives to `'none'` instead of relying on the default fallback is a simple and powerful defense-in-depth measure.
+**Prevention:** Always append `frame-src 'none'; child-src 'none'; worker-src 'none';` to `<meta>` CSP tags in static sites unless the site explicitly requires embedding iframes or spawning workers.
