@@ -20,3 +20,7 @@
 ## 2025-05-09 - Safely Dismissing Mobile Menus via Outside Clicks
 **Learning:** Using `e.stopPropagation()` on toggle buttons to prevent document click handlers from firing is risky and can block legitimate global events. Furthermore, checking outside clicks must account for the toggle trigger itself to avoid reopening behavior immediately after closing.
 **Action:** When implementing outside click dismissal, attach a document-level click listener and conditionally close only if `!trigger.contains(e.target) && !menu.contains(e.target)`, ensuring both the trigger button and the menu itself are excluded from the "outside" area.
+
+## 2026-05-19 - Communicating Context Switches for External Links
+**Learning:** When external links (`target="_blank"`) lack visual cues (like an external link icon) and adding new CSS classes or inline styles is prohibited by strict boundaries (like a `style-src 'self'` CSP and "no custom CSS" rule), screen reader users are left unaware of the context switch.
+**Action:** Use a combination of `aria-label="Link Text (opens in a new tab)"` to inform screen readers and `title="Opens in a new tab"` to provide a native tooltip for sighted mouse users, improving predictability and adhering to WCAG 3.2.5 without requiring any custom CSS.
