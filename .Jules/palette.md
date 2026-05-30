@@ -11,8 +11,8 @@
 **Action:** Always verify the interaction between skip-to-content anchor targets and sticky headers, adding `scroll-margin-top` as needed.
 
 ## 2024-11-20 - Dynamic Text Updates in Custom Controls
-**Learning:** When a custom interactive element updates its text content to provide feedback (e.g., changing "hc.nbz.boats" to "Copied!"), a static `aria-label` will override the text content, preventing screen readers from announcing the change even if `aria-live="polite"` is set.
-**Action:** Always dynamically update the `aria-label` alongside the visual text content when providing interaction feedback, or avoid static `aria-labels` when the text content itself is already descriptive. Ensure `[role="button"]` elements receive the same focus-visible styles as native buttons.
+**Learning:** When a custom interactive element updates its text content to provide feedback (e.g., changing "hc.nbz.boats" to "Copied!"), a static `aria-label` will override the text content, preventing screen readers from announcing the change even if `aria-live="polite"` is set. Additionally, if the element uses a `title` attribute for native tooltips, failing to update it leaves sighted users with stale, conflicting context (e.g. seeing "Copied!" text but a "Click to copy" tooltip).
+**Action:** Always dynamically update both the `aria-label` and the `title` attribute alongside the visual text content when providing interaction feedback. Ensure `[role="button"]` elements receive the same focus-visible styles as native buttons.
 
 ## 2024-05-24 - Interactive Text Affordances & Layout Stability
 **Learning:** Programmatically adding `role="button"` to inline text for features like click-to-copy is insufficient for UX if visual button affordances are missing. Furthermore, dynamically changing the text (e.g., from an IP address to "Copied!") causes jarring layout shifts if the inline element lacks a fixed minimum width.
