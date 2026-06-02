@@ -24,3 +24,7 @@
 ## 2026-05-19 - Communicating Context Switches for External Links
 **Learning:** When external links (`target="_blank"`) lack visual cues (like an external link icon) and adding new CSS classes or inline styles is prohibited by strict boundaries (like a `style-src 'self'` CSP and "no custom CSS" rule), screen reader users are left unaware of the context switch.
 **Action:** Use a combination of `aria-label="Link Text (opens in a new tab)"` to inform screen readers and `title="Opens in a new tab"` to provide a native tooltip for sighted mouse users, improving predictability and adhering to WCAG 3.2.5 without requiring any custom CSS.
+
+## 2026-06-02 - Synchronizing Tooltips with Dynamic State Changes
+**Learning:** When a custom interactive element updates its text content for temporary feedback (e.g., changing from an IP address to "Copied!"), keeping a static `title` attribute (like "Click to copy IP") creates confusing, contradictory feedback for sighted mouse users who rely on the native tooltip.
+**Action:** Always dynamically update the element's `title` attribute in sync with its visual text content and `aria-label` changes to provide consistent feedback for all users during temporary interaction states.
