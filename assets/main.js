@@ -55,6 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
         address.setAttribute('aria-live', 'polite');
 
         const originalText = address.textContent;
+        const originalAriaLabel = address.getAttribute('aria-label');
+        const originalTitle = address.getAttribute('title');
         let timeoutId;
 
         const copyText = async () => {
@@ -62,12 +64,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 await navigator.clipboard.writeText(originalText);
                 address.textContent = 'Copied!';
                 address.setAttribute('aria-label', 'Server IP address copied!');
+                address.setAttribute('title', 'Copied!');
+
                 if (timeoutId) {
                     clearTimeout(timeoutId);
                 }
                 timeoutId = setTimeout(() => {
                     address.textContent = originalText;
-                    address.setAttribute('aria-label', 'Copy server IP address');
+
+                    if (originalAriaLabel === null) {
+                        address.removeAttribute('aria-label');
+                    } else {
+                        address.setAttribute('aria-label', originalAriaLabel);
+                    }
+
+                    if (originalTitle === null) {
+                        address.removeAttribute('title');
+                    } else {
+                        address.setAttribute('title', originalTitle);
+                    }
                 }, 2000);
             } catch (err) {
                 console.error('Failed to copy text: ', err);
