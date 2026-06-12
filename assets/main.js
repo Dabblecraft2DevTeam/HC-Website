@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelector('.nav-links');
 
     if (menuToggle && navLinks) {
-        menuToggle.setAttribute('aria-expanded', 'false');
 
         const closeMenu = () => {
             navLinks.classList.remove('active');
