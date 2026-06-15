@@ -28,3 +28,7 @@
 ## 2026-05-19 - Click-to-Copy Tooltip Synchronization and State Regression
 **Learning:** When implementing click-to-copy functionality on an element that uses a native `title` attribute for tooltip guidance (e.g., "Click to copy IP"), failing to update the `title` to "Copied!" alongside the `aria-label` and visible text leaves sighted mouse users with confusing, stale feedback. Furthermore, caching original attributes (like `title` and `aria-label`) *inside* the event listener before temporarily modifying them causes "state regression" where rapid, successive interactions permanently overwrite the original cached values with the temporary ones.
 **Action:** Always dynamically sync `title` attributes with visual text and `aria-label` changes to provide consistent visual feedback for mouse interactions. To prevent state regressions from rapid interactions, always cache original attribute values outside the event listener during initialization, using `.getAttribute()` and conditionally restoring or removing them with `.removeAttribute()`.
+
+## 2026-06-15 - Hardcoding Initial ARIA States
+**Learning:** When dealing with custom navigation toggles (like mobile menus), relying solely on JavaScript to inject `aria-expanded` and `aria-controls` leaves a brief window during page load where screen readers may lack structural context.
+**Action:** Always hardcode the initial `aria-expanded` state and explicit `aria-controls` bindings directly in the HTML to ensure immediate screen reader accessibility before JavaScript execution.
