@@ -32,3 +32,7 @@
 ## 2026-06-10 - Initial ARIA States for Mobile Menus
 **Learning:** Relying purely on JavaScript to inject initial `aria-expanded` and link toggle buttons to menus dynamically leaves screen readers without crucial context before execution or if JS fails.
 **Action:** Hardcode the initial `aria-expanded="false"` state and explicit `aria-controls` bindings directly in the HTML to ensure immediate screen reader accessibility for custom navigation toggles.
+
+## 2024-05-30 - Graceful Fallbacks for Clipboard Actions
+**Learning:** When using modern APIs like `navigator.clipboard.writeText()`, failures can occur silently if permissions are denied or context is invalid, leaving users (and screen readers) unaware that their action failed. Furthermore, if temporary state changes (like showing "Copied!") are not applied to the failure path, the element may remain stuck or never provide any feedback.
+**Action:** Always wrap async clipboard calls in `try...catch` and provide explicit visual and ARIA feedback (e.g., "Copy failed!") in the catch block. Ensure state reversion logic (like resetting the text after a timeout) is decoupled from the success path so it reliably cleans up after both successes and failures.
