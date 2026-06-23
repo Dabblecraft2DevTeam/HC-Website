@@ -65,25 +65,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 address.textContent = 'Copied!';
                 address.setAttribute('aria-label', 'Server IP address copied!');
                 address.setAttribute('title', 'Copied!');
-                if (timeoutId) {
-                    clearTimeout(timeoutId);
-                }
-                timeoutId = setTimeout(() => {
-                    address.textContent = originalText;
-                    if (originalAriaLabel) {
-                        address.setAttribute('aria-label', originalAriaLabel);
-                    } else {
-                        address.removeAttribute('aria-label');
-                    }
-                    if (originalTitle) {
-                        address.setAttribute('title', originalTitle);
-                    } else {
-                        address.removeAttribute('title');
-                    }
-                }, 2000);
             } catch (err) {
                 console.error('Failed to copy text: ', err);
+                address.textContent = 'Copy failed!';
+                address.setAttribute('aria-label', 'Failed to copy server IP address');
+                address.setAttribute('title', 'Copy failed!');
             }
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+            timeoutId = setTimeout(() => {
+                address.textContent = originalText;
+                if (originalAriaLabel) {
+                    address.setAttribute('aria-label', originalAriaLabel);
+                } else {
+                    address.removeAttribute('aria-label');
+                }
+                if (originalTitle) {
+                    address.setAttribute('title', originalTitle);
+                } else {
+                    address.removeAttribute('title');
+                }
+            }, 2000);
         };
 
         address.addEventListener('click', copyText);

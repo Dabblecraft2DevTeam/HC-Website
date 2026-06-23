@@ -32,3 +32,7 @@
 ## 2026-06-10 - Initial ARIA States for Mobile Menus
 **Learning:** Relying purely on JavaScript to inject initial `aria-expanded` and link toggle buttons to menus dynamically leaves screen readers without crucial context before execution or if JS fails.
 **Action:** Hardcode the initial `aria-expanded="false"` state and explicit `aria-controls` bindings directly in the HTML to ensure immediate screen reader accessibility for custom navigation toggles.
+
+## 2026-06-23 - Visible Error States for Click-to-Copy
+**Learning:** When implementing click-to-copy functionality using the Clipboard API, relying solely on silent console errors for promise rejections leaves users (both sighted and screen reader) unaware if the copy action fails (e.g. due to permissions).
+**Action:** Always provide temporary visual and ARIA error feedback (e.g., 'Copy failed!') to clearly communicate permission or context failures, ensuring the state reverts cleanly afterwards.
