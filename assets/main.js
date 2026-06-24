@@ -65,6 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 address.textContent = 'Copied!';
                 address.setAttribute('aria-label', 'Server IP address copied!');
                 address.setAttribute('title', 'Copied!');
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                address.textContent = 'Copy failed!';
+                address.setAttribute('aria-label', 'Failed to copy server IP address');
+                address.setAttribute('title', 'Copy failed!');
+            } finally {
                 if (timeoutId) {
                     clearTimeout(timeoutId);
                 }
@@ -81,8 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         address.removeAttribute('title');
                     }
                 }, 2000);
-            } catch (err) {
-                console.error('Failed to copy text: ', err);
             }
         };
 
