@@ -83,6 +83,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 2000);
             } catch (err) {
                 console.error('Failed to copy text: ', err);
+                address.textContent = 'Copy failed!';
+                address.setAttribute('aria-label', 'Copy failed!');
+                address.setAttribute('title', 'Copy failed!');
+                if (timeoutId) {
+                    clearTimeout(timeoutId);
+                }
+                timeoutId = setTimeout(() => {
+                    address.textContent = originalText;
+                    if (originalAriaLabel) {
+                        address.setAttribute('aria-label', originalAriaLabel);
+                    } else {
+                        address.removeAttribute('aria-label');
+                    }
+                    if (originalTitle) {
+                        address.setAttribute('title', originalTitle);
+                    } else {
+                        address.removeAttribute('title');
+                    }
+                }, 2000);
             }
         };
 
