@@ -32,3 +32,7 @@
 ## 2026-06-10 - Initial ARIA States for Mobile Menus
 **Learning:** Relying purely on JavaScript to inject initial `aria-expanded` and link toggle buttons to menus dynamically leaves screen readers without crucial context before execution or if JS fails.
 **Action:** Hardcode the initial `aria-expanded="false"` state and explicit `aria-controls` bindings directly in the HTML to ensure immediate screen reader accessibility for custom navigation toggles.
+
+## 2026-07-01 - Error States for Async Interactions
+**Learning:** When dealing with async browser APIs like the Clipboard API (`navigator.clipboard.writeText`), failures (e.g. permission denied) that simply log to the console leave users completely unaware that their action failed. This is particularly problematic for actions that are expected to provide immediate feedback.
+**Action:** Always provide explicit, temporary visual and ARIA error feedback (e.g., changing text to "Copy failed!") for async action rejections to ensure users are informed of failures in context.
