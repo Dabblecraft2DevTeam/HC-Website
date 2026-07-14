@@ -36,3 +36,7 @@
 ## 2026-07-01 - Error States for Async Interactions
 **Learning:** When dealing with async browser APIs like the Clipboard API (`navigator.clipboard.writeText`), failures (e.g. permission denied) that simply log to the console leave users completely unaware that their action failed. This is particularly problematic for actions that are expected to provide immediate feedback.
 **Action:** Always provide explicit, temporary visual and ARIA error feedback (e.g., changing text to "Copy failed!") for async action rejections to ensure users are informed of failures in context.
+
+## 2026-07-14 - Active States for Transform-based Hovers
+**Learning:** Elements with transform-based hover states (like `scale(1.05)`) feel uniquely stiff and unresponsive if they lack a corresponding `:active` state. The visual discrepancy between the floating hover state and the lack of a "press" interaction is more noticeable than on elements with purely color-based hovers.
+**Action:** Always pair transform-based `:hover` states with a complementary `:active` state (e.g., scaling down slightly or reducing translation) to provide continuous, satisfying tactile feedback during interactions.
