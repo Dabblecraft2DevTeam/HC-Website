@@ -40,3 +40,8 @@
 **Vulnerability:** The static HTML pages allowed arbitrary base URIs and form submissions (`base-uri 'self'`, `form-action 'self'`) in their `<meta>` CSP tags. While the site currently doesn't use these features, permitting them provides an attack vector for Base Tag Hijacking or unauthorized data exfiltration if an injection vulnerability is ever discovered.
 **Learning:** A CSP should strictly follow the principle of least privilege. Leaving unused capabilities open (like forms or base tags in a purely informational static site) needlessly increases the attack surface.
 **Prevention:** Always set `base-uri 'none'` and `form-action 'none'` in the `<meta>` CSP definitions when the static application has no legitimate use for them, improving defense-in-depth.
+
+## 2026-10-18 - Missing Trusted Types in CSP
+**Vulnerability:** The static HTML pages lacked Trusted Types directives (`require-trusted-types-for 'script'`) in their `<meta>` CSP tags. This left the application potentially vulnerable to DOM-based Cross-Site Scripting (XSS) if unsafe sinks (like `innerHTML`) were ever used, even if the application currently relies on safe sinks like `textContent`.
+**Learning:** For static sites without dynamic string evaluation or unsafe DOM sinks, enforcing Trusted Types is a powerful defense-in-depth mechanism. It completely disables DOM XSS vectors by blocking assignments to unsafe sinks, ensuring that future code additions cannot introduce these vulnerabilities.
+**Prevention:** Always set `require-trusted-types-for 'script'; trusted-types 'none';` in the `<meta>` CSP definitions for static applications that do not require unsafe DOM manipulation, significantly enhancing their security posture against DOM XSS.
