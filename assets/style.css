@@ -224,6 +224,10 @@ nav {
     background: #eee;
 }
 
+.btn:active {
+    transform: scale(0.98);
+}
+
 .discord-cta {
     margin-top: 3rem;
     padding: 2rem;
@@ -260,6 +264,10 @@ nav {
 .social-card:hover {
     background: #4d4d4d;
     transform: translateY(-5px);
+}
+
+.social-card:active {
+    transform: translateY(-2px);
 }
 
 footer {
